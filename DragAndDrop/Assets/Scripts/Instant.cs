@@ -79,14 +79,15 @@ public class Instant : MonoBehaviour, IPointerDownHandler
     void Start()
     {
         canvas = GameObject.FindGameObjectWithTag("LevelScreenCanvas");
-        pos = new Vector3(-200,270, 0);
+        pos = gameObject.transform.localPosition;
+        //pos = new Vector3(-200,270, 0);
     }
     public void OnPointerDown(PointerEventData eventData)
     {
         //pos = new Vector3(-200, 270, 0);
         if (GameObject.FindObjectOfType<instanceChecker>().InstanceCreated)
         {
-            pos = new Vector3(0, 0, 0);
+            //pos = new Vector3(0, 0, 0);
         }
         ///var pos = transform.position;
          obj = Instantiate(prefab, pos, transform.rotation);

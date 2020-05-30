@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CollisionDetection.cs" />
     <Compile Include="Assets\Scripts\DeleteInstance.cs" />
+    <Compile Include="Assets\Scripts\DragonController.cs" />
     <Compile Include="Assets\Scripts\DroppingBlock.cs" />
     <Compile Include="Assets\Scripts\InstaiatedObjectScript.cs" />
     <Compile Include="Assets\Scripts\instanceChecker.cs" />
