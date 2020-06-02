@@ -16,7 +16,7 @@ public class DragonController : MonoBehaviour
     
     public TextMeshProUGUI text;
     public GameObject canvas;
-    bool firstCardAppeared = false;
+    //bool firstCardAppeared = false;
 
 
     

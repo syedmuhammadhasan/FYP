@@ -7,10 +7,13 @@ public class CollisionDetection : MonoBehaviour
     public Node node;
     Vector3 pos;
     GameObject canvas;
+    //GameObject countcanvas;
     [SerializeField] public string text;
     float colliderHeight;
+    
     void Start()
     {
+       // countcanvas = GameObject.FindGameObjectWithTag("CountCanvas");
         //pos = FindObjectOfType<Instant>().pos;
         canvas = GameObject.FindGameObjectWithTag("LevelScreenCanvas");
         pos = gameObject.transform.localPosition;
@@ -28,16 +31,18 @@ public class CollisionDetection : MonoBehaviour
         if (collision.GetType() == typeof(PolygonCollider2D))
         {
             
-            if(node.code == "LOOP")
+            if (node.code == "LOOP")
             {
                 var collider = GetComponent<BoxCollider2D>();
                 float top = collider.offset.y + (collider.size.y / 2f);
                 float btm = collider.offset.y - (collider.size.y / 2f);
-                collision.transform.localPosition = new Vector3(pos.x, pos.y- (top- btm), 0);
+                collision.transform.localPosition = new Vector3(pos.x, pos.y - (top - btm), 0);
             }
+
             else
                 collision.transform.localPosition = new Vector3(pos.x, pos.y - 180, 0);
 
+          
             collision.GetComponent<CapsuleCollider2D>().enabled = false;
             //Debug.Log(collision.gameObject.GetComponent<detect>().node.code);
             // this.node.connected = true;
@@ -65,13 +70,14 @@ public class CollisionDetection : MonoBehaviour
 
         else if (collision.GetType() == typeof(CapsuleCollider2D))
         {
-
+           
             collision.GetComponent<PolygonCollider2D>().enabled = false;
             //this.node.connected = true;
             //connectingNode.connected = true;
             node.right = connectingNode;
             Debug.Log("connected to right");
             collision.transform.localPosition = new Vector3(pos.x + 180, pos.y, 0);
+          
             // do stuff only for the circle collider
         }
     }
@@ -131,6 +137,7 @@ public class CollisionDetection : MonoBehaviour
 
         if (collision.GetType() == typeof(PolygonCollider2D))
         {
+           
             collision.GetComponent<CapsuleCollider2D>().enabled = true;
             Debug.Log("exited down");
            // pos = new Vector3(0, 0, 0);
@@ -139,6 +146,7 @@ public class CollisionDetection : MonoBehaviour
 
         else if (collision.GetType() == typeof(CapsuleCollider2D))
         {
+            
             collision.GetComponent<PolygonCollider2D>().enabled = true;
             Debug.Log("exited right");
             //pos = new Vector3(0, 0, 0);

@@ -19,6 +19,7 @@ TagManager:
   - loop
   - obtacle()
   - if
+  - CountCanvas
   layers:
   - Default
   - TransparentFX
