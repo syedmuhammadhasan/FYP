@@ -7,12 +7,16 @@ public class CollisionDetection : MonoBehaviour
     public Node node;
     Vector3 pos;
     GameObject canvas;
+    GameObject ErrorBoxPrefab;
+    //GameObject errorBox;
     //GameObject countcanvas;
     [SerializeField] public string text;
+    
     float colliderHeight;
     
     void Start()
     {
+        ErrorBoxPrefab = GameObject.FindGameObjectWithTag("ErrorDialogueCanvas");
        // countcanvas = GameObject.FindGameObjectWithTag("CountCanvas");
         //pos = FindObjectOfType<Instant>().pos;
         canvas = GameObject.FindGameObjectWithTag("LevelScreenCanvas");
@@ -30,40 +34,36 @@ public class CollisionDetection : MonoBehaviour
         //{
         if (collision.GetType() == typeof(PolygonCollider2D))
         {
-            
-            if (node.code == "LOOP")
+            if (collision.tag == "Obstacle" || collision.tag == "count")
             {
-                var collider = GetComponent<BoxCollider2D>();
-                float top = collider.offset.y + (collider.size.y / 2f);
-                float btm = collider.offset.y - (collider.size.y / 2f);
-                collision.transform.localPosition = new Vector3(pos.x, pos.y - (top - btm), 0);
+                var errorBox = Instantiate(ErrorBoxPrefab, collision.transform.localPosition, collision.transform.localRotation);
+                errorBox.transform.SetParent(collision.transform, true);
+            }
+            else
+            {
+                if (node.code == "LOOP")
+                {
+                    var collider = GetComponent<BoxCollider2D>();
+                    float top = collider.offset.y + (collider.size.y / 2f);
+                    float btm = collider.offset.y - (collider.size.y / 2f);
+                    collision.transform.localPosition = new Vector3(pos.x, pos.y - (top - btm), 0);
+                }
+
+                else
+                    collision.transform.localPosition = new Vector3(pos.x, pos.y - 180, 0);
+
+
+                collision.GetComponent<CapsuleCollider2D>().enabled = false;
+                node.down = connectingNode;
+                // Node connection
+                Debug.Log("connected to down");
+                
+                Debug.Log(pos);
+                Debug.Log(collision.transform.position);
+               
             }
 
-            else
-                collision.transform.localPosition = new Vector3(pos.x, pos.y - 180, 0);
 
-          
-            collision.GetComponent<CapsuleCollider2D>().enabled = false;
-            //Debug.Log(collision.gameObject.GetComponent<detect>().node.code);
-            // this.node.connected = true;
-            // connectingNode.connected = true;
-             node.down = connectingNode;
-            // Node connection
-            Debug.Log("connected to down");
-            //collision.transform.SetParent(canvas.transform, false);
-            Debug.Log(pos);
-            //pos = transform.position;
-
-            
-            
-            //collision.transform.localPosition = new Vector3(a.x, a.y - 160, 0);
-            // .transform.position = pos;
-            Debug.Log(collision.transform.position);
-            //collision.transform.position = new Vector3 (pos.x + 200,pos.y - 100, 0);
-            //collision.transform.position = new Vector3(pos.x , pos.y -120, 0);
-            //pos = collision.transform.position;
-
-            //Debug.Log(collision.gameObject.tag);
         }
 
 
@@ -105,6 +105,7 @@ public class CollisionDetection : MonoBehaviour
             else
                 collision.transform.localPosition = new Vector3(pos.x, pos.y - 180, 0);
             collision.GetComponent<CapsuleCollider2D>().enabled = false;
+            
             //Debug.Log(collision.gameObject.GetComponent<detect>().node.code);
             //this.node.connected = true;
             //connectingNode.connected = true;
@@ -142,6 +143,8 @@ public class CollisionDetection : MonoBehaviour
             Debug.Log("exited down");
            // pos = new Vector3(0, 0, 0);
             node.down = null;
+           // errorBox.GetComponent<Canvas>().enabled = false;
+            
         }
 
         else if (collision.GetType() == typeof(CapsuleCollider2D))

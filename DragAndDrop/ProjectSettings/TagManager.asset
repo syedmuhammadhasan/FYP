@@ -17,9 +17,10 @@ TagManager:
   - fly()
   - fire()
   - loop
-  - obtacle()
   - if
   - CountCanvas
+  - ErrorDialogueCanvas
+  - Obstacle
   layers:
   - Default
   - TransparentFX

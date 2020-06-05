@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 6e2fd65936974524b894980718e3ff87
   - enabled: 1
+    path: Assets/Scenes/AllLevelScreen.unity
+    guid: 652ab5457f6f2234ea64d08ff6d2c922
+  - enabled: 1
     path: Assets/Scenes/LevelScreen Template.unity
     guid: 7a57c4f4e9e484e40835f42db79b496c
   - enabled: 1

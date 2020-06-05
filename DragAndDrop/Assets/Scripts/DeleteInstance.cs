@@ -12,7 +12,12 @@ public class DeleteInstance : MonoBehaviour, IDropHandler
     {
         // Debug.Log(destroyObject);
         //Debug.Log("OnDropDelet");
-        Destroy(eventData.pointerDrag);
+        if(eventData.pointerDrag.tag != "ErrorDialogueCanvas")
+        {
+            Debug.Log(eventData.pointerDrag.tag);
+            Destroy(eventData.pointerDrag);
+        }
+        
 
         //if (eventData.pointerDrag != null)
         //{
