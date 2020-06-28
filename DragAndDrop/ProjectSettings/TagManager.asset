@@ -21,6 +21,7 @@ TagManager:
   - CountCanvas
   - ErrorDialogueCanvas
   - Obstacle
+  - showCode
   layers:
   - Default
   - TransparentFX

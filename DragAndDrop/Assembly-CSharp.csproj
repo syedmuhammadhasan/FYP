@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\InstaiatedObjectScript.cs" />
     <Compile Include="Assets\Scripts\instanceChecker.cs" />
     <Compile Include="Assets\Scripts\Instant.cs" />
+    <Compile Include="Assets\Scripts\Level1.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\ProgrammingGame.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
